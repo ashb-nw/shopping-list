@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript" src="PATH/TO/YOUR/COPY/OF/jquery.mousewheel.min.js"></script>
+
+<script type="text/javascript" src="http://dev.jtsage.com/cdn/spinbox/latest/jqm-spinbox.min.js"></script>
+<body>
+
+<script>
+var chosenItems = {};
+
+
+function gotoQuantity(obj){
+
+  $.mobile.changePage("#quantity");
+  foodChosen = $(obj).text();
+  $("#foodname").text(foodChosen);
+}
+
+function backToList()
+{
+  $.mobile.changePage("#pageone");
+    foodChosen = $("#foodname").text();
+    quantityChosen = $("#spin").val();
+    $("#spin").val(0);
+    chosenItems[foodChosen] = quantityChosen;
+    alert(JSON.stringify(chosenItems));
+}
+    
+</script>
+
+
+
+
+<div data-role="page" id="pageone">
+  <div data-role="main" class="ui-content">
+    <h2>Food</h2>
+    <form class="ui-filterable">
+      <input id="myFilter" data-type="search">
+    </form>
+    <ul data-role="listview" data-filter="true" data-input="#myFilter" data-autodividers="true" data-inset="true">
+      <li><a onclick="gotoQuantity(this)">Apple</a></li>
+      <li><a onclick="gotoQuantity(this)">Apricots</a></li>
+      <li><a onclick="gotoQuantity(this)">Aubergine</a></li>
+      <li><a onclick="gotoQuantity(this)">Bananas</a></li>
+      <li><a onclick="gotoQuantity(this)">Broccolli</a></li>
+      <li><a onclick="gotoQuantity(this)">Cabbage</a></li>
+      <li><a onclick="gotoQuantity(this)">Carrots</a></li>
+      <li><a onclick="gotoQuantity(this)">Cauliflower</a></li>
+      <li><a onclick="gotoQuantity(this)">Cucumber</a></li>
+      <li><a onclick="gotoQuantity(this)">Mango</a></li>
+      <li><a onclick="gotoQuantity(this)">Olives</a></li>
+      <li><a onclick="gotoQuantity(this)">Pear</a></li>
+      <li><a onclick="gotoQuantity(this)">Potato</a></li>
+      <li><a onclick="gotoQuantity(this)">Spinach</a></li>
+    </ul>
+  </div>
+</div> 
+<div data-role="page" id="quantity">
+  <div data-role="main" class="ui-content">
+    <div id="foodname"></div>
+    <div class="ui-field-contain">
+      <label for="spin">Quantity</label>
+      <input type="text" data-role="spinbox" name="spin" id="spin" value="0" min="0" max="10" />
+    </div>
+    <button onclick="backToList()">Choose Again</button>
+    <button onclick="ShowChosenItems()">Show Chosen Items</button>
+  </div>
+</div>
+
+
+</body>
+</html>
