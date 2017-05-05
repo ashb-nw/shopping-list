@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<style> 
+.btn-group button {
+    background-color: #4CAF50; /* Green background */
+    border: 1px solid green; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 50%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+}
+
+.btn-group button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}
+footer{
+
+bottom: 0px;
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+    background-color: #3e8e41;
+}
+</style>
+
+
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript" src="PATH/TO/YOUR/COPY/OF/jquery.mousewheel.min.js"></script>
+
+<script type="text/javascript" src="http://dev.jtsage.com/cdn/spinbox/latest/jqm-spinbox.min.js"></script>
+</head>
+<body>
+
+<script>
+var chosenItems = {};
+
+
+function gotoQuantity(obj){
+
+  $.mobile.changePage("#quantity");
+  foodChosen = $(obj).text();
+  $("#foodname").text(foodChosen);
+}
+
+function ShowChosenItems(){
+
+  if ($("#spin").val()!="0")   saveChoice();
+  $.mobile.changePage("#finalShoppingList");
+  //$("#allFoodChosen").text(JSON.stringify(chosenItems));
+  output = "";
+  for (var key in chosenItems) {
+  //output += key + " -> " + chosenItems[key] + "<hr/>";
+   foodData = key + ":" + chosenItems[key];
+   $('<li>').append('<a href="#">' + foodData + '</a>').appendTo('#shoppingList');
+  
+  }
+  //$("#allFoodChosen").html(output);
+  
+
+}
+
+function backToList()
+{ 
+  saveChoice();
+  $.mobile.changePage("#pagesix");
+  $("#spin").val(0);
+  
+}
+
+function saveChoice()
+{
+  foodChosen = $("#foodname").text();
+    quantityChosen = $("#spin").val();
+    chosenItems[foodChosen] = quantityChosen;
+    //alert(JSON.stringify(chosenItems));
+
+}
+    
+</script>
+
+<div data-role="page" id="pageone">
+  <div data-role="header">
+
+<h1>Home Page</h1>
+</div>
+<h2>Weekly Shopping List</h2>
+    
+    <div data-role="main" class="ui-content">
+    
+    
+    
+    
+    </div>
+    <div class="btn-group">
+  <a href="#pagetwo" class="ui-btn">Week 1</a>
+  <a href="#pagethree" class="ui-btn">Week 2</a>
+  <a href="#pagefour" class="ui-btn">Week 3</a>
+  <a href="#pagefive" class="ui-btn">Week 4</a>
+  <a href="#pagesix" class="ui-btn">Pre-Defined List</a>
+    
+</div>
+    
+<div data-role="footer">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#" data-icon="arrow-l" style="display:none"></a></li>
+        <li><a href="#pageone" data-icon="home"></a></li>
+        <li><a href="#pagetwo" data-icon="arrow-r" style="display:none"></a></li>
+        
+      
+      </ul>
+    </div>
+   </div>
+</div>
+
+<div data-role="page" id="pagetwo">
+  <div data-role="header">
+<h1>Page Two</h1>
+</div>
+    
+    <div data-role="main" class="ui-content">
+    <p>Shopping list Week 1</p>
+    
+    </div>
+    
+<div data-role="footer">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#pageone" data-icon="arrow-l"></a></li>
+        <li><a href="#pageone" data-icon="home"></a></li>
+        <li><a href="#pagethree" data-icon="arrow-r"></a></li>
+        
+      
+      </ul>
+    </div>
+   </div>
+</div>
+
+<div data-role="page" id="pagethree">
+  <div data-role="header">
+<h1>Page Three</h1>
+
+</div>
+    
+    <div data-role="main" class="ui-content">
+    <p>Shopping list Week 2</p>
+    
+    
+    </div>
+    
+<div data-role="footer">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#pagetwo" data-icon="arrow-l"></a></li>
+        <li><a href="#pageone" data-icon="home"></a></li>
+        <li><a href="#pagefour" data-icon="arrow-r"></a></li>
+        
+
+      </ul>
+    </div>
+    
+   </div>
+</div>
+
+<div data-role="page" id="pagefour">
+  <div data-role="header">
+<h1>Page four</h1>
+
+</div>
+    
+    <div data-role="main" class="ui-content">
+    <p>Shopping list Week 3</p>
+    
+    
+    </div>
+    
+<footer >
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#pagethree" data-icon="arrow-l"></a></li>
+        <li><a href="#pageone" data-icon="home"></a></li>
+        <li><a href="#pagefive" data-icon="arrow-r"></a></li>
+        
+
+      </ul>
+    </div>
+    
+   </footer>
+   </div>
+ 
+ <div data-role="page" id="pagefive">
+  <div data-role="header">
+<h1>Page five</h1>
+
+</div>
+    
+    <div data-role="main" class="ui-content">
+    <p>Shopping List Week 4</p>
+    
+    
+    </div>
+    
+<footer >
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#pagefour" data-icon="arrow-l"></a></li>
+        <li><a href="#pageone" data-icon="home"></a></li>
+        <li><a href="#pagesix" data-icon="arrow-r"></a></li>
+        
+
+      </ul>
+    </div>
+    
+   </footer>
+   </div>
+   
+   <div data-role="page" id="pagesix">
+  <div data-role="header">
+<h1>Page six</h1>
+
+</div>
+    
+    <div data-role="main" class="ui-content">
+    <p>Pre-Defined Shopping List</p>
+    
+    
+    
+    </div>
+    <div data-role="main" class="ui-content">
+    <h2>Food</h2>
+    <form class="ui-filterable">
+      <input id="myFilter" data-type="search">
+    </form>
+    <ul data-role="listview" data-filter="true" data-input="#myFilter" data-autodividers="true" data-inset="true">
+      <li><a onclick="gotoQuantity(this)">Apple</a></li>
+      <li><a onclick="gotoQuantity(this)">Apricots</a></li>
+      <li><a onclick="gotoQuantity(this)">Aubergine</a></li>
+      <li><a onclick="gotoQuantity(this)">Bananas</a></li>
+      <li><a onclick="gotoQuantity(this)">Broccolli</a></li>
+      <li><a onclick="gotoQuantity(this)">Cabbage</a></li>
+      <li><a onclick="gotoQuantity(this)">Carrots</a></li>
+      <li><a onclick="gotoQuantity(this)">Cauliflower</a></li>
+      <li><a onclick="gotoQuantity(this)">Cucumber</a></li>
+      <li><a onclick="gotoQuantity(this)">Mango</a></li>
+      <li><a onclick="gotoQuantity(this)">Olives</a></li>
+      <li><a onclick="gotoQuantity(this)">Pear</a></li>
+      <li><a onclick="gotoQuantity(this)">Potato</a></li>
+      <li><a onclick="gotoQuantity(this)">Spinach</a></li>
+    </ul>
+  </div>
+  
+<footer >
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#pagefive" data-icon="arrow-l"></a></li>
+        <li><a href="#pageone" data-icon="home"></a></li>
+        <li><a href="#" data-icon="arrow-r"style="display:none"></a></li>
+        
+
+      </ul>
+    </div>
+    
+   </footer>
+   </div>
+   
+ <div data-role="page" id="quantity">
+  <div data-role="main" class="ui-content">
+    <div id="foodname"></div>
+    <div class="ui-field-contain">
+      <label for="spin">Quantity</label>
+      <input type="text" data-role="spinbox" name="spin" id="spin" value="0" min="0" max="10" />
+    </div>
+    <button onclick="backToList()">Choose Again</button>
+    <button onclick="ShowChosenItems()">Show Chosen Items</button>
+  </div>
+</div>
+
+<div data-role="page" id="finalShoppingList">
+  <div data-role="main" class="ui-content">
+    <div id="allFoodChosen">
+    <ul data-role="listview" data-inset="true" id="shoppingList">
+    </ul>
+    </div>
+  </div>
+  </div>
+
+
+
+
+
+</body>
+<style>
+.navbar{
+overflow: hidden; 
+width: 100%; 
+float: center; 
+position: fixed; 
+bottom: 0; 
+}
+</style>
+</html>
+
+
+    
+        
+    
+    
